@@ -46,6 +46,25 @@ exports.getLotesById = async (req, res, next) => {
   }
 };
 
+
+
+// GET a single lotes by IDTonel
+exports.getLotesByIdTonel = async (req, res, next) => {
+  const { idtonel } = req.params;
+  try {
+    const [rows] = await pool.query('SELECT * FROM lotesproduccion WHERE idtonel = ?', [idtonel]);
+    if (rows.length === 0) {
+      return res.status(404).json({ message: 'IDTonel not found' });
+    }
+    res.json(rows[0]);
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+
+
 // PUT update a product by ID
 exports.updateLotes = async (req, res, next) => {
   const { idlote } = req.params;
