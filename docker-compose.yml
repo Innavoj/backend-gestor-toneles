@@ -1,0 +1,35 @@
+services:
+  mysql:
+    image: mysql:latest
+    container_name: dbmysql
+    restart: always
+    env_file:
+      - ./.env
+    environment:
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+      MYSQL_DATABASE: $MYSQL_DATABASE
+      MYSQL_USER: $MYSQL_USER
+      MYSQL_PASSWORD: $MYSQL_PASSWORD
+    volumes:
+      - ./mysql:/var/lib/mysql
+    ports:
+      - $MYSQL_PORT:$MYSQL_PORT
+  backend:
+    image: backend-brew-keg-traker
+    container_name: backend-brew
+    depends_on:
+      - mysql
+    env_file:
+      - ./.env
+    ports:
+      - $PORT:$PORT
+  app:
+    image: brewer-keg-traker-app
+    container_name: app-brew
+    depends_on:
+      - backend
+    ports:
+      - 80:80
+
+volumes:
+  mysql:
