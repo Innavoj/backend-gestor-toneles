@@ -8,6 +8,7 @@ const dispenserRoutes = require('./src/routes/dispenserRoutes');
 const mttotonelRoutes = require('./src/routes/mttotonelRoutes');
 const mttodispenserRoutes = require('./src/routes/mttodispenserRoutes');
 const eventostonelRoutes = require('./src/routes/eventostonelRoutes');
+const locationRoutes = require('./src/routes/locationRoutes');
 // const dashboardRoutes = require('./src/routes/dashboardRoutes'); // Placeholder for future
 // const accountsRoutes = require('./src/routes/accountsRoutes'); // Placeholder for future
 
@@ -24,6 +25,7 @@ app.use('/api/dispenser', dispenserRoutes);
 app.use('/api/mttotonel', mttotonelRoutes);
 app.use('/api/mttodispenser', mttodispenserRoutes);
 app.use('/api/eventostonel', eventostonelRoutes);
+app.use('/api/location', locationRoutes);
 
 // app.use('/api/dashboard', dashboardRoutes); // Placeholder
 // app.use('/api/accounts', accountsRoutes); // Placeholder
