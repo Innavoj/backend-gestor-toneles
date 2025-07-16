@@ -10,8 +10,8 @@ router.get('/', eventostonelController.getAllEventostonel);
 router.post('/', eventostonelController.createEventostonel);
 
 // GET a single product by ID
-router.get('/:idevento', eventostonelController.getEventostonelById);
-
+//router.get('/:idevento', eventostonelController.getEventostonelById);
+router.get('/:idtonel', eventostonelController.getEventostonelById);
 // PUT update a product by ID
 router.put('/:idevento', eventostonelController.updateEventostonel);
 

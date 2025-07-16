@@ -35,9 +35,14 @@ exports.createEventostonel = async (req, res, next) => {
 
 // GET a single eventos by ID
 exports.getEventostonelById = async (req, res, next) => {
-  const { idevento } = req.params;
+  const { idtonel } = req.params;
+  sql1='SELECT nserial, tipoevento, fechaevento, descripcion FROM toneles t '
+  sql2='join eventostoneles e2 on t.idtonel = e2.idtonel where t.idtonel = ?'
+ // sql3='order by e2.fechaevento'
   try {
-    const [rows] = await pool.query('SELECT * FROM eventostoneles WHERE idevento = ?', [idevento]);
+   const [rows] = await pool.query(sql1 + '' + sql2, [idtonel]);
+   console.log(rows);
+  //  const [rows] = await pool.query('SELECT * FROM eventostoneles WHERE idtonel = ?', [idtonel]);
     if (rows.length === 0) {
       return res.status(404).json({ message: 'Evento not found' });
     }
@@ -46,6 +51,19 @@ exports.getEventostonelById = async (req, res, next) => {
     next(error);
   }
 };
+
+// exports.getEventostonelById = async (req, res, next) => {
+//   const { idevento } = req.params;
+//   try {
+//     const [rows] = await pool.query('SELECT * FROM eventostoneles WHERE idevento = ?', [idevento]);
+//     if (rows.length === 0) {
+//       return res.status(404).json({ message: 'Evento not found' });
+//     }
+//     res.json(rows[0]);
+//   } catch (error) {
+//     next(error);
+//   }
+// };
 
 // PUT update a evento by ID
 exports.updateEventostonel = async (req, res, next) => {
