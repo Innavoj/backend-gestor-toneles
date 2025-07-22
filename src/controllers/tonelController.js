@@ -77,7 +77,7 @@ exports.updateTonel = async (req, res, next) => {
 exports.updateTonelStatusLocation = async (req, res, next) => {
   const { idtonel } = req.params;
   const { status, location, notas } = req.body;
- console.log(req.body)
+// console.log(req.body)
   if ( !status || !location  ) {
     return res.status(400).json({ message: 'Missing required fields' });
   }
